@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Join from './views/Join.vue'
-import Edit from './views/Edit.vue'
+import Join from '@/views/Join'
+import Edit from '@/views/Edit'
 
 Vue.use(Router)
 
@@ -12,12 +12,18 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Join
+      component: Join,
+      meta: {
+        title: 'SDG Stadium - Join a game',
+      }
     },
     {
       path: '/edit',
       name: 'edit',
-      component: Edit
+      component: Edit,
+      meta: {
+        title: 'SDG Stadium - Programming',
+      }
     }
   ]
 })

@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-  <h1>Title</h1>
-   <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/edit">Edit</router-link>
-    </div>
+  <nav-bar></nav-bar>
+
     <b-container style="margin:10px 5px">
       <!--transition name="slide"-->
         <router-view></router-view>
       <!--/transition-->
     </b-container>
     
-     <h3>footer</h3>
+    <b-container fluid class="w-100" style="padding-top:40px;">
+        <img  src="@/assets/images/addictlab-logo.png"/>
+        
+    </b-container>
   </div>
 </template>
 
@@ -26,10 +26,16 @@ Vue.use(IconsPlugin);
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+import titleMixin from './mixins/titleMixin'
+Vue.mixin(titleMixin)
+
+import NavBar from '@/components/NavBar'
 
 export default {
   name: 'app',
+  title: 'SDG Stadium',
   components: {
+      "nav-bar": NavBar
   },
   data(){
     return {

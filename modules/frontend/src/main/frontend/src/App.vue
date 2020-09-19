@@ -8,8 +8,8 @@
       <!--/transition-->
     </b-container>
     
-    <b-container fluid class="w-100" style="padding-top:40px;">
-        <img  src="@/assets/images/addictlab-logo.png"/>
+    <b-container fluid  style="padding-top:20px;">
+        <b-img left src="@/assets/images/addictlab-logo.png"></b-img>
         
     </b-container>
   </div>

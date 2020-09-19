@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <form class="w-25">
+    <b-container style="padding-left:25px">
+        <form class="w-25" >
             <h3>Join a game</h3>
 
             <div class="form-group">
@@ -17,7 +17,7 @@
 
         </form>
        
-    </div>
+    </b-container>
 </template>
 
 <script>

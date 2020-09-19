@@ -30,6 +30,9 @@
 import Vue from 'vue'
 import Blockly from 'blockly';
 
+import '@/blockly/drivar/blocks'
+import '@/blockly/drivar/generators'
+
 import vgl from 'vue-golden-layout'
 Vue.use(vgl);
 import 'golden-layout/src/css/goldenlayout-light-theme.css'
@@ -86,7 +89,7 @@ export default {
   },
   methods: {
     showCode() {
-      this.code = this.blocklyInstance.workspaceToCode(this.blocklyWorkspace);
+      this.code = this.blocklyInstance.JavaScript.workspaceToCode(this.blocklyWorkspace);
     },
     goldenLayoutResizeHandler(e) {
          if(e) console.log(e,  this.blocklyWorkspace, this.blocklyInstance);
@@ -124,6 +127,6 @@ export default {
 <style scoped>
 
 #gl-top {
- height: 85vh;
+ height: 75vh;
 }      
 </style>

@@ -9,8 +9,7 @@
               <gl-stack :closable="false">
               <gl-component width="20" :closable="false" title="Code">
                 <p id="code">
-                  <button v-on:click="showCode()">Show JavaScript</button>
-                  <pre v-html="code"></pre>
+                  <pre style="padding:5px" v-html="code"></pre>
                 </p>
               </gl-component>
               <gl-component width="20"  :closable="false" title="Console">
@@ -29,6 +28,7 @@
 <script>
 import Vue from 'vue'
 import Blockly from 'blockly';
+import 'blockly/python';
 
 import '@/blockly/drivar/blocks'
 import '@/blockly/drivar/generators'
@@ -52,6 +52,10 @@ export default {
         zoom: {controls: true, wheel: true, startScale: 1.0, maxScale: 3, minScale: 0.3, scaleSpeed: 1.2},
         toolbox:
         `<xml>
+          <category name="Drivar" colour="%{BKY_LOOPS_HUE}">
+            <block type="motor_forward"></block>
+            <block type="motor_backward"></block>
+          </category>
           <category name="Logic" colour="%{BKY_LOGIC_HUE}">
             <block type="controls_if"></block>
             <block type="logic_compare"></block>
@@ -89,7 +93,7 @@ export default {
   },
   methods: {
     showCode() {
-      this.code = this.blocklyInstance.JavaScript.workspaceToCode(this.blocklyWorkspace);
+      this.code = this.blocklyInstance.Python.workspaceToCode(this.blocklyWorkspace);
     },
     goldenLayoutResizeHandler(e) {
          if(e) console.log(e,  this.blocklyWorkspace, this.blocklyInstance);
@@ -111,15 +115,23 @@ export default {
          blocklyDiv.style.height = ((blocklyArea.offsetHeight?blocklyArea.offsetHeight:blocklyArea.height)-20) + 'px';
          this.blocklyInstance.svgResize(this.blocklyWorkspace);
      },
+     onWorkspaceChange(e) {
+       this.blocklyInstance.Python.INFINITE_LOOP_TRAP = null;
+       var workspace = this.blocklyInstance.Workspace.getById(e.workspaceId);
+       this.code = this.blocklyInstance.Python.workspaceToCode(workspace);
+          // chiby.currentApp.generatedContents = code;
+          // var xml = Blockly.Xml.workspaceToDom(workspace);
+          // var xml_text = Blockly.Xml.domToText(xml);
+          // chiby.currentApp.contents = xml_text;
+     }
   },
   mounted() {
     console.log('mounting Blockly editor')
     this.blocklyWorkspace = Blockly.inject(this.$refs['editor'],this.options);
     this.blocklyInstance = Blockly;
     console.log('mounted Blockly editor')
-    
+    this.blocklyInstance.mainWorkspace.addChangeListener(this.onWorkspaceChange);
     this.goldenLayoutResizeHandler();
-
   }
 }
 </script>

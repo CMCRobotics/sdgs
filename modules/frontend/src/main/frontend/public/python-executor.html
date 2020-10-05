@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Executor</title>
+    <script src="assets/js/brython.js" type="application/javascript"></script>
+</head>
+<body onload="brython(1)" style="background-color: black; color: whitesmoke; font-family: monospace;">
+    
+
+    <script type="text/python">
+        from browser import document,html,run_script,bind, window
+
+        document <= html.H3("Hello !")
+        
+
+        @bind(window,"message")
+        def on_post_message(ev):
+          print("received postmessage")
+
+    </script>
+</body>
+</html>

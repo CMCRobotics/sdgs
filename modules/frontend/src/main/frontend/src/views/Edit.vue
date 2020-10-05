@@ -8,6 +8,7 @@
               </gl-component>
               <gl-stack :closable="false">
               <gl-component width="20" :closable="false" title="Code">
+                <python-executor></python-executor>
                 <p id="code">
                   <pre style="padding:5px" v-html="code"></pre>
                 </p>
@@ -32,6 +33,7 @@ import 'blockly/python';
 
 import '@/blockly/drivar/blocks'
 import '@/blockly/drivar/generators'
+import PythonExecutor from '@/components/PythonExecutor'
 
 import vgl from 'vue-golden-layout'
 Vue.use(vgl);
@@ -40,6 +42,7 @@ import 'golden-layout/src/css/goldenlayout-light-theme.css'
 export default {
   name: 'Edit',
   components: {
+    "python-executor" : PythonExecutor
   },
   data(){
     return {

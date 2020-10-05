@@ -26,7 +26,8 @@ module.exports = {
       })
   },
   devServer: {
-    port: 3000
+    port: 3000,
+    contentBase: [__dirname + '/public', __dirname + '/assets']
   },
   configureWebpack: {
     devtool: 'source-map'

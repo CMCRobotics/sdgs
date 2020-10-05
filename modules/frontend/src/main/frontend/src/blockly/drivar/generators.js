@@ -19,6 +19,16 @@ import * as Blockly from 'blockly/core';  // eslint-disable-line no-unused-vars
 //   return globals;
 // }
 
+Blockly.Python['motor_forward'] = function(block) { // eslint-disable-line no-unused-vars
+  var code ='drivar.motor_move(2000)\n'; // eslint-disable-line no-undef
+  return code;// eslint-disable-line no-undef
+};
+
+Blockly.Python['motor_backward'] = function(block) { // eslint-disable-line no-unused-vars
+    var code ='drivar.motor_move(2000, -200)\n'; // eslint-disable-line no-undef
+    return code;// eslint-disable-line no-undef
+  };
+  
 
 // Blockly.Python['motor_forward'] = function(block) { // eslint-disable-line no-unused-vars
 //   code+='drivar.motor_move(durationInMs=2000)\n'; // eslint-disable-line no-undef

@@ -3,9 +3,9 @@
   <nav-bar></nav-bar>
 
     <b-container style="margin:10px 5px">
-      <!--transition name="slide"-->
+      <transition name="slide">
         <router-view></router-view>
-      <!--/transition-->
+      </transition>
     </b-container>
     
     <b-container fluid  style="padding-top:20px;">

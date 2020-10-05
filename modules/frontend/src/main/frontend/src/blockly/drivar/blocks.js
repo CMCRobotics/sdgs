@@ -4,7 +4,7 @@ import * as Blockly from 'blockly/core';
 Blockly.Blocks['motor_forward'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("blockly/assets/images/motor_forward.png", 70,70, "Move forward"));
+        .appendField(new Blockly.FieldImage("/assets/images/motor_forward.png", 70,70, "Move forward"));
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(0);
@@ -16,7 +16,7 @@ Blockly.Blocks['motor_forward'] = {
 Blockly.Blocks['motor_backward'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("blockly/assets/images/motor_backward.png", 70,70, "Move backward"));
+        .appendField(new Blockly.FieldImage("/assets/images/motor_backward.png", 70,70, "Move backward"));
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(0);

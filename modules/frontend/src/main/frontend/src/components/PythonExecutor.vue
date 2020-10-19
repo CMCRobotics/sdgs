@@ -3,12 +3,10 @@
     <div>
     <span><b-icon @click="executeEvent" :icon="statusIcon" :variant="statusVariant"></b-icon></span>
     </div>
-    <iframe name="pythonExecFrame" src="/python-executor.html" ></iframe>
   </div>
 </template>
 
 <script>
-
 
 export default {
     data(){
@@ -25,7 +23,7 @@ export default {
             this.statusVariant = "success";
 
             const iframe = window.frames['pythonExecFrame']
-            iframe.postMessage('Message from parent', '*')
+            iframe.postMessage('{"code":"Message from parent"}', '*')
         },
         onIframeLoad: function(event) {
             console.log("executor ready ..."+event);

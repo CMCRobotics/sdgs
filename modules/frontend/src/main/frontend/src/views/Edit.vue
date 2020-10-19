@@ -7,14 +7,14 @@
                   <div ref="editorArea"> </div>
               </gl-component>
               <gl-stack :closable="false">
+              <gl-component width="20"  :closable="false" title="Console">
+                <div ref="console"> </div>
+              </gl-component>
               <gl-component width="20" :closable="false" title="Code">
-                <python-executor></python-executor>
+                
                 <p id="code">
                   <pre style="padding:5px" v-html="code"></pre>
                 </p>
-              </gl-component>
-              <gl-component width="20"  :closable="false" title="Console">
-                <h1>Component 3</h1>
               </gl-component>
             </gl-stack>
         </gl-row>
@@ -33,7 +33,6 @@ import 'blockly/python';
 
 import '@/blockly/drivar/blocks'
 import '@/blockly/drivar/generators'
-import PythonExecutor from '@/components/PythonExecutor'
 
 import vgl from 'vue-golden-layout'
 Vue.use(vgl);
@@ -42,8 +41,8 @@ import 'golden-layout/src/css/goldenlayout-light-theme.css'
 export default {
   name: 'Edit',
   components: {
-    "python-executor" : PythonExecutor
-  },
+
+    },
   data(){
     return {
       code: '',
@@ -119,9 +118,8 @@ export default {
          this.blocklyInstance.svgResize(this.blocklyWorkspace);
      },
      onWorkspaceChange(e) {
-       this.blocklyInstance.Python.INFINITE_LOOP_TRAP = null;
        var workspace = this.blocklyInstance.Workspace.getById(e.workspaceId);
-       this.code = this.blocklyInstance.Python.workspaceToCode(workspace);
+       this.code = this.blocklyInstance.JavaScript.workspaceToCode(workspace);
           // chiby.currentApp.generatedContents = code;
           // var xml = Blockly.Xml.workspaceToDom(workspace);
           // var xml_text = Blockly.Xml.domToText(xml);

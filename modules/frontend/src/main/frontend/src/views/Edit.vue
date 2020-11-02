@@ -8,7 +8,7 @@
               </gl-component>
               <gl-stack :closable="false">
               <gl-component width="20"  :closable="false" title="Console">
-                <div ref="console"> </div>
+                <code-executor></code-executor>
               </gl-component>
               <gl-component width="20" :closable="false" title="Code">
                 
@@ -38,10 +38,12 @@ import vgl from 'vue-golden-layout'
 Vue.use(vgl);
 import 'golden-layout/src/css/goldenlayout-light-theme.css'
 
+import CodeExecutor from '@/components/CodeExecutor'
+
 export default {
   name: 'Edit',
   components: {
-
+      CodeExecutor
     },
   data(){
     return {
@@ -95,7 +97,7 @@ export default {
   },
   methods: {
     showCode() {
-      this.code = this.blocklyInstance.Python.workspaceToCode(this.blocklyWorkspace);
+      this.code = this.blocklyInstance.JavaScript.workspaceToCode(this.blocklyWorkspace);
     },
     goldenLayoutResizeHandler(e) {
          if(e) console.log(e,  this.blocklyWorkspace, this.blocklyInstance);
@@ -117,21 +119,32 @@ export default {
          blocklyDiv.style.height = ((blocklyArea.offsetHeight?blocklyArea.offsetHeight:blocklyArea.height)-20) + 'px';
          this.blocklyInstance.svgResize(this.blocklyWorkspace);
      },
-     onWorkspaceChange(e) {
-       var workspace = this.blocklyInstance.Workspace.getById(e.workspaceId);
-       this.code = this.blocklyInstance.JavaScript.workspaceToCode(workspace);
+     onWorkspaceEvent(e) {
+       if(e.type == this.blocklyInstance.Events.UI){
+        //  if(e.element == 'click'){
+           console.log("execute block", e.element);
+        //  }
+
+       }
+       else
+       {
+         var workspace = this.blocklyInstance.Workspace.getById(e.workspaceId);
+         this.code = this.blocklyInstance.JavaScript.workspaceToCode(workspace);
           // chiby.currentApp.generatedContents = code;
           // var xml = Blockly.Xml.workspaceToDom(workspace);
           // var xml_text = Blockly.Xml.domToText(xml);
           // chiby.currentApp.contents = xml_text;
+       }
+     },
+     runBlock(e){
+       console.log("running block ",e);
+       e.stopPropagation();
      }
   },
   mounted() {
-    console.log('mounting Blockly editor')
     this.blocklyWorkspace = Blockly.inject(this.$refs['editor'],this.options);
     this.blocklyInstance = Blockly;
-    console.log('mounted Blockly editor')
-    this.blocklyInstance.mainWorkspace.addChangeListener(this.onWorkspaceChange);
+    this.blocklyInstance.mainWorkspace.addChangeListener(this.onWorkspaceEvent);
     this.goldenLayoutResizeHandler();
   }
 }

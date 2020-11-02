@@ -10,7 +10,6 @@
     
     <b-container fluid  style="padding-top:20px;">
         <b-img left src="@/assets/images/addictlab-logo.png"></b-img>
-        
     </b-container>
   </div>
 </template>
@@ -35,7 +34,7 @@ export default {
   name: 'app',
   title: 'SDG Stadium',
   components: {
-      "nav-bar": NavBar
+      NavBar
   },
   data(){
     return {
